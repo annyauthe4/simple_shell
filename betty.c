@@ -1,35 +1,15 @@
 #include "main.h"
 
 /**
-  * main - takes in argument and print it out
-  * @argc: argument count
-  * @argv: argument vector
+  * main - Prints out a message
   *
   * Return: 0 on success, 1 on failure
   */
-int main(int argc, char *argv[])
+int main(void)
 {
-	int i;
+	char *message;
 
-	if (argc > 3)
-	{
-		printf("Too many arguments\n");
-		printf("Format: name...arg2\n");
-		exit(-1);
-	}
-	i = 0;
-	while (i < argc)
-	{
-		if (i == 0)
-		{
-			printf("This program name is %s\n", argv[i]);
-		}
-		else
-		{
-			printf("Other arguments are:\n");
-			printf("%s\n", argv[i]);
-		}
-		i++;
-	}
+	message = "I love C as it makes me dogged\n";
+	write(STDOUT_FILENO, message, 32);
 	return (0);
 }
