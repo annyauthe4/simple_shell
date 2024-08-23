@@ -1,0 +1,1 @@
+This is a simple shell project that behaves like the UNIX shell. It takes in an argument, process it and check if it is an executable or a built in command to produce a suitable output or an error message
