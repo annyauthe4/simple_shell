@@ -11,6 +11,12 @@ int main(int argc, char *argv[])
 {
 	int i;
 
+	if (argc > 3)
+	{
+		printf("Too many arguments\n");
+		printf("Format: name...arg2\n");
+		exit(-1);
+	}
 	i = 0;
 	while (i < argc)
 	{
