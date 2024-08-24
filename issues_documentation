@@ -1,0 +1,33 @@
+Function not printing "$" before argument is read from stdin
+ssize_t _getline(char **lineptr, size_t *n, int fd);
+int main(void)
+{
+	ssize_t line_read;
+	char *lineptr;
+	size_t len;
+
+	lineptr = NULL;
+	 len = 0;
+	 printf("$ ");
+	 while ((line_read = _getline(&lineptr, &len, 0)) != -1)
+	 {
+		 printf("$ ");
+	 }
+	 free(lineptr);
+	 return (0);
+}
+
+Solution
+while (1)
+{
+	/* Print the initial prompt */
+	write(STDOUT_FILENO, "$ ", 2);
+
+	line_read = _getline(&lineptr, &len, STDIN_FILENO);
+	if (line_read == -1)
+		break;
+
+	/* Print the input line */
+	write(STDOUT_FILENO, lineptr, line_read);
+}
+free(lineptr);
