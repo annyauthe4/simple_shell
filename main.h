@@ -6,5 +6,6 @@
 #include <unistd.h>
 
 ssize_t _getline(char **lineptr, size_t *n, int fd);
+int _strcmp(char *str1, char *str2);
 
 #endif
