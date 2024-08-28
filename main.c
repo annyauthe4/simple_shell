@@ -1,31 +1,47 @@
 #include "main.h"
 
 /**
+  * free_words - Frees allocated arrays of memory
+  * @arr: Arrays of memories
+  *
+  * Return: void
+  */
+void free_words(char **arr)
+{
+	int i;
+
+	if (arr == NULL)
+		return;
+	for (i = 0; arr[i]; i++)
+		free(arr[i]);
+	free(arr);
+}
+/**
   * main - Function execution starts from here
   *
   * Return: 0 on success
   */
-ssize_t _getline(char **lineptr, size_t *n, int fd);
 int main(void)
 {
 	ssize_t line_read;
-	char *lineptr, *ext;
+	char *linept, *ext;
 	size_t len;
+	int i;
 
 	ext = "exit\n";
-	lineptr = NULL;
+	linept = NULL;
 	len = 0;
 	while (1)
 	{
 		write(STDOUT_FILENO, "$ ", 2);
-		line_read = _getline(&lineptr, &len, 0);
+		line_read = _getline(&linept, &len, 0);
 		if (line_read == -1)
 			break;
-		if (_strcmp(ext, lineptr) == 0)
+		if (_strcmp(ext, linept) == 0)
 			exit(0);
-		write(STDOUT_FILENO, lineptr, line_read);
+		write(STDOUT_FILENO, linept, line_read);
 	}
-	free(lineptr);
+	free(linept);
 	return (0);
 }
 
