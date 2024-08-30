@@ -26,7 +26,6 @@ int main(void)
 	ssize_t line_read;
 	char *linept, *ext;
 	size_t len;
-	int i;
 
 	ext = "exit\n";
 	linept = NULL;

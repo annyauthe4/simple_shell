@@ -1,10 +1,29 @@
 #include "main.h"
 
 /**
+  * _malloc - Allocate memory dynamically
+  * @lineptr: Array of pointers
+  * @n: Pointer to an integer
+  *
+  * Return: int.
+  */
+void * _malloc(char **lineptr, size_t *n)
+{
+	*n = 128;
+	*lineptr = malloc(*n);
+	if (*lineptr == NULL)
+	{
+		perror("Malloc failed\n");
+		exit(-1);
+	}
+	return (*lineptr);
+}
+
+/**
   * _getline - Reads an entire line of chars from an input stream
   * @lineptr: A pointer to a pointer to a buffer
   * @n: A pointer to a buffer size
-  * @stream: The input (eg stdin or a file)
+  * @fd: The input (eg stdin or a file)
   *
   * Return: Number of chars read or -1 on error or EOF
   */
@@ -18,12 +37,7 @@ ssize_t _getline(char **lineptr, size_t *n, int fd)
 	if (lineptr == NULL || n == NULL)
 		return (-1);
 	if (*lineptr == NULL || *n == 0)
-	{
-		*n = 128;
-		*lineptr = malloc(*n);
-		if (*lineptr == NULL)
-			return (-1);
-	}
+		_malloc(lineptr, n);
 	i = 0;
 	while ((bytes_read = read(fd, buffer, 1)) > 0)
 	{
