@@ -7,7 +7,7 @@
   *
   * Return: int.
   */
-void * _malloc(char **lineptr, size_t *n)
+void *_malloc(char **lineptr, size_t *n)
 {
 	*n = 128;
 	*lineptr = malloc(*n);
@@ -31,14 +31,13 @@ ssize_t _getline(char **lineptr, size_t *n, int fd)
 {
 	char *new_ptr;
 	ssize_t bytes_read;
-	size_t i, j;
+	size_t i = 0, j;
 	char buffer[1];
 
 	if (lineptr == NULL || n == NULL)
 		return (-1);
 	if (*lineptr == NULL || *n == 0)
 		_malloc(lineptr, n);
-	i = 0;
 	while ((bytes_read = read(fd, buffer, 1)) > 0)
 	{
 		if (i + 1 >= *n)
